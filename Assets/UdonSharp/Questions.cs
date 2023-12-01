@@ -135,22 +135,17 @@ public sealed class Questions
     ];
 
 
-    private int iterator = 0;
+    public int iterator = 0;
     public string Language = "English";
 
-    string CurrentQuestion
+    public string SetQuestion()
     {
-        get
+        return Language switch
         {
-            var result = Language switch
-            {
-                "German" => GermanQuestions[iterator],
-                "English" => EnglishQuestions[iterator],
-                "Chinese" => ChineseQuestions[iterator],
-                _ => throw NotImplementedException
-            };
-            return result;
-        }
-        set { CurrentQuestion = value; }
+            "German" => GermanQuestions[iterator],
+            "English" => EnglishQuestions[iterator],
+            "Chinese" => ChineseQuestions[iterator],
+            _ => null,
+        };
     }
 }

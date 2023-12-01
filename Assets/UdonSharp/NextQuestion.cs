@@ -9,20 +9,16 @@ using VRC.SDK3.Data;
 using VRC.SDKBase;
 using VRC.Udon;
 
-public class TextBehaviour : UdonSharpBehaviour
+public class NextQuestion : UdonSharpBehaviour
 {
     public TMP_Text _textMesh;
-
-
+    
     //DataList questions = new();
     public override void Interact()
     {
         if (_textMesh != null)
         {
-            _textMesh.text = "bla" ;
+            Questions.SetQuestion();
         }
-    }
-    void Start()
-    {
     }
 }
