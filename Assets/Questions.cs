@@ -1,5 +1,7 @@
-﻿using BestHTTP.SecureProtocol.Org.BouncyCastle.Security;
+﻿using System;
+using BestHTTP.SecureProtocol.Org.BouncyCastle.Security;
 using Mono.Cecil.Cil;
+using UnityEngine.Analytics;
 using VRC.SDK3.StringLoading;
 using VRC.SDKBase;
 using VRC.SDKBase.Midi;
@@ -9,43 +11,43 @@ public sealed class Questions
     readonly string[] GermanQuestions =
         [
         "1. Wenn Sie die Wahl hätten, wen würden Sie sich als Gast beim Abendessen wünschen?",
-        "2. Würden Sie gerne berühmt sein? Auf welche Art und Weise?",
-        "3. Haben Sie vor einem Telefonat jemals geprobt, was Sie sagen werden? Weshalb?",
-        "4. Was wäre ein \"perfekter\" Tag für Sie?",
-        "5. Wann haben Sie zuletzt für sich selbst gesungen? Für jemand anderen?",
-        "6. Wenn du 90 Jahre alt werden könntest und die letzten 60 Jahre deines Lebens entweder den Geist oder den Körper eines 30-Jährigen behalten könntest, was würdest du dir wünschen?",
-        "7. Haben Sie eine geheime Vorahnung, wie Sie sterben werden?",
-        "8. Nennen Sie drei Dinge, die Sie und Ihr Partner gemeinsam zu haben scheinen.",
-        "9. Wofür sind Sie in Ihrem Leben am dankbarsten?",
-        "10. Wenn Sie etwas an Ihrer Erziehung ändern könnten, was wäre das?",
-        "11. Nehmen Sie sich vier Minuten Zeit und erzählen Sie Ihrem Partner Ihre Lebensgeschichte so detailliert wie möglich.",
-        "12. Wenn du morgen aufwachen könntest und eine bestimmte Eigenschaft oder Fähigkeit gewonnen hättest, welche wäre das?",
-        "Satz II",
-        "13. Wenn eine Kristallkugel dir die Wahrheit über dich, dein Leben, die Zukunft oder etwas anderes sagen könnte, was würdest du wissen wollen?",
-        "14. Gibt es etwas, das du schon lange tun wolltest? Warum haben Sie es noch nicht getan?",
-        "15. Was ist die größte Errungenschaft deines Lebens?",
-        "16. Was schätzen Sie an einer Freundschaft am meisten?",
-        "17. Was ist Ihre wertvollste Erinnerung?",
-        "18. Welches ist deine schrecklichste Erinnerung?",
-        "19. Wenn du wüsstest, dass du in einem Jahr plötzlich sterben würdest, würdest du dann etwas an deinem jetzigen Lebensstil ändern? Und warum?",
-        "20. Was bedeutet Freundschaft für dich?",
-        "21. Welche Rolle spielen Liebe und Zuneigung in deinem Leben?",
-        "22. Nennen Sie abwechselnd etwas, das Sie als positive Eigenschaft Ihres Partners ansehen. Nennen Sie insgesamt fünf Punkte.",
-        "23. Wie eng und herzlich ist Ihre Familie? Haben Sie das Gefühl, dass Ihre Kindheit glücklicher war als die der meisten anderen Menschen?",
-        "24. Was denken Sie über Ihre Beziehung zu Ihrer Mutter?",
-        "Satz III",
-        "25. Machen Sie jeweils drei wahre \"Wir\"-Aussagen. Zum Beispiel: \"Wir sind beide in diesem Raum und fühlen ...\"",
-        "26. Vervollständigen Sie diesen Satz: \"Ich wünschte, ich hätte jemanden, mit dem ich ... teilen könnte.\"",
-        "27. Wenn Sie mit Ihrem Partner oder Ihrer Partnerin eng befreundet wären, teilen Sie ihm oder ihr bitte mit, was für ihn oder sie wichtig wäre, zu wissen.",
-        "28. Sagen Sie Ihrem Partner, was Sie an ihm oder ihr mögen. Seien Sie diesmal sehr ehrlich und sagen Sie Dinge, die Sie vielleicht nicht zu jemandem sagen würden, den Sie gerade erst kennengelernt haben.",
-        "29. Teilen Sie Ihrem Partner einen peinlichen Moment in Ihrem Leben mit.",
-        "30. Wann haben Sie das letzte Mal vor einer anderen Person geweint? Vor sich selbst?",
-        "31. Sagen Sie Ihrem Partner etwas, das Sie bereits an ihm/ihr mögen.",
-        "32. Was, wenn überhaupt, ist zu ernst, um darüber zu scherzen?",
-        "33. Wenn Sie heute Abend sterben würden und keine Möglichkeit hätten, mit jemandem zu kommunizieren, was würden Sie am meisten bedauern, wenn Sie es niemandem gesagt hätten? Warum haben Sie es ihnen noch nicht gesagt?",
-        "34. Ihr Haus, in dem sich alles befindet, was Sie besitzen, fängt Feuer. Nachdem Sie Ihre Angehörigen und Haustiere gerettet haben, bleibt Ihnen noch Zeit, einen letzten Versuch zu unternehmen, einen Gegenstand zu retten. Welches wäre das? Und warum?",
-        "35. Wessen Tod würde Sie von allen Menschen in Ihrer Familie am meisten beunruhigen? Und warum?",
-        "36. Erzählen Sie von einem persönlichen Problem und bitten Sie Ihren Partner um Rat, wie er oder sie damit umgehen könnte. Bitten Sie Ihren Partner auch, Ihnen zu sagen, wie Sie sich in Bezug auf das Problem fühlen, das Sie ausgewählt haben."
+            "2. Würden Sie gerne berühmt sein? Auf welche Art und Weise?",
+            "3. Haben Sie vor einem Telefonat jemals geprobt, was Sie sagen werden? Weshalb?",
+            "4. Was wäre ein \"perfekter\" Tag für Sie?",
+            "5. Wann haben Sie zuletzt für sich selbst gesungen? Für jemand anderen?",
+            "6. Wenn du 90 Jahre alt werden könntest und die letzten 60 Jahre deines Lebens entweder den Geist oder den Körper eines 30-Jährigen behalten könntest, was würdest du dir wünschen?",
+            "7. Haben Sie eine geheime Vorahnung, wie Sie sterben werden?",
+            "8. Nennen Sie drei Dinge, die Sie und Ihr Partner gemeinsam zu haben scheinen.",
+            "9. Wofür sind Sie in Ihrem Leben am dankbarsten?",
+            "10. Wenn Sie etwas an Ihrer Erziehung ändern könnten, was wäre das?",
+            "11. Nehmen Sie sich vier Minuten Zeit und erzählen Sie Ihrem Partner Ihre Lebensgeschichte so detailliert wie möglich.",
+            "12. Wenn du morgen aufwachen könntest und eine bestimmte Eigenschaft oder Fähigkeit gewonnen hättest, welche wäre das?",
+            "Satz II",
+            "13. Wenn eine Kristallkugel dir die Wahrheit über dich, dein Leben, die Zukunft oder etwas anderes sagen könnte, was würdest du wissen wollen?",
+            "14. Gibt es etwas, das du schon lange tun wolltest? Warum haben Sie es noch nicht getan?",
+            "15. Was ist die größte Errungenschaft deines Lebens?",
+            "16. Was schätzen Sie an einer Freundschaft am meisten?",
+            "17. Was ist Ihre wertvollste Erinnerung?",
+            "18. Welches ist deine schrecklichste Erinnerung?",
+            "19. Wenn du wüsstest, dass du in einem Jahr plötzlich sterben würdest, würdest du dann etwas an deinem jetzigen Lebensstil ändern? Und warum?",
+            "20. Was bedeutet Freundschaft für dich?",
+            "21. Welche Rolle spielen Liebe und Zuneigung in deinem Leben?",
+            "22. Nennen Sie abwechselnd etwas, das Sie als positive Eigenschaft Ihres Partners ansehen. Nennen Sie insgesamt fünf Punkte.",
+            "23. Wie eng und herzlich ist Ihre Familie? Haben Sie das Gefühl, dass Ihre Kindheit glücklicher war als die der meisten anderen Menschen?",
+            "24. Was denken Sie über Ihre Beziehung zu Ihrer Mutter?",
+            "Satz III",
+            "25. Machen Sie jeweils drei wahre \"Wir\"-Aussagen. Zum Beispiel: \"Wir sind beide in diesem Raum und fühlen ...\"",
+            "26. Vervollständigen Sie diesen Satz: \"Ich wünschte, ich hätte jemanden, mit dem ich ... teilen könnte.\"",
+            "27. Wenn Sie mit Ihrem Partner oder Ihrer Partnerin eng befreundet wären, teilen Sie ihm oder ihr bitte mit, was für ihn oder sie wichtig wäre, zu wissen.",
+            "28. Sagen Sie Ihrem Partner, was Sie an ihm oder ihr mögen. Seien Sie diesmal sehr ehrlich und sagen Sie Dinge, die Sie vielleicht nicht zu jemandem sagen würden, den Sie gerade erst kennengelernt haben.",
+            "29. Teilen Sie Ihrem Partner einen peinlichen Moment in Ihrem Leben mit.",
+            "30. Wann haben Sie das letzte Mal vor einer anderen Person geweint? Vor sich selbst?",
+            "31. Sagen Sie Ihrem Partner etwas, das Sie bereits an ihm/ihr mögen.",
+            "32. Was, wenn überhaupt, ist zu ernst, um darüber zu scherzen?",
+            "33. Wenn Sie heute Abend sterben würden und keine Möglichkeit hätten, mit jemandem zu kommunizieren, was würden Sie am meisten bedauern, wenn Sie es niemandem gesagt hätten? Warum haben Sie es ihnen noch nicht gesagt?",
+            "34. Ihr Haus, in dem sich alles befindet, was Sie besitzen, fängt Feuer. Nachdem Sie Ihre Angehörigen und Haustiere gerettet haben, bleibt Ihnen noch Zeit, einen letzten Versuch zu unternehmen, einen Gegenstand zu retten. Welches wäre das? Und warum?",
+            "35. Wessen Tod würde Sie von allen Menschen in Ihrer Familie am meisten beunruhigen? Und warum?",
+            "36. Erzählen Sie von einem persönlichen Problem und bitten Sie Ihren Partner um Rat, wie er oder sie damit umgehen könnte. Bitten Sie Ihren Partner auch, Ihnen zu sagen, wie Sie sich in Bezug auf das Problem fühlen, das Sie ausgewählt haben."
     ];
 
     readonly string[] EnglishQuestions =
@@ -131,11 +133,24 @@ public sealed class Questions
         "35. 在你家里所有的人中，你会觉得谁的死亡最令人不安？为什么？",
         "36. 分享一个个人问题，并征求你的伴侣对他或她如何处理这个问题的建议。同时，请你的伴侣向你反映你对你所选择的问题的感觉如何。"
     ];
-    
-    
+
+
     private int iterator = 0;
-    private string language {
-        get { return language; }
-        set{ 
-            ; }
+    public string Language = "English";
+
+    string CurrentQuestion
+    {
+        get
+        {
+            var result = Language switch
+            {
+                "German" => GermanQuestions[iterator],
+                "English" => EnglishQuestions[iterator],
+                "Chinese" => ChineseQuestions[iterator],
+                _ => throw NotImplementedException
+            };
+            return result;
+        }
+        set { CurrentQuestion = value; }
+    }
 }
